@@ -1,0 +1,14 @@
+(consistency3
+ (CONSISTENCY 0
+  (CONSISTENCY-1 nil 3900083784
+   (""
+    (then (rewrite-msg-off) (skosimp*)
+     (branch (prop)
+      ((then (comment "induction base")
+        (try (grind :if-match nil) (propax) (postpone)))
+       (then (comment "inductive step") (expand "trans")
+        (expand "per_click_up_button") (prop)
+        (try (grind :if-match nil) (propax) (postpone))))))
+    nil)
+   nil shostak)))
+

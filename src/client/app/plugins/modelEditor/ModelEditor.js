@@ -298,6 +298,64 @@ define(function (require, exports, module) {
             }
             typecheck(pvsFile);
         });
+
+        d3.select("#btnProve").on("click", function () {
+            function proveTheorem(pvsFile) {
+                var btn = d3.select("#btnProve").html("Proving...").attr("disabled", true);
+                var ws = WSManager.getWebSocket();
+                var fp = pvsFile.path;
+                ws.send({type: "proveTheorem", path: fp},
+                     function (err, res) {
+                        btn.html("Prove").attr("disabled", null);
+                        var msg = res.stdout;
+                        var log='';
+                        if (!err) {
+                            reloadPVSio();
+                            msg = msg.substring(msg.indexOf("Proof summary"), msg.length);
+                            var logFile = fp.substring(0, fp.length - 4) + ".log";
+                            ws.getFile(logFile, function (err, res) {
+                                log = res.content;
+                                log = log.replace(/\\n/g,". ");
+                                log = log.split("{").join(" ").split("}").join(" ");
+                                log = log.substring(log.indexOf("Installing inlined proof scripts into theory"), log.length);  
+                                Notification.create({
+                                    header: "Proof summary of "+ pvsFile.name ,
+                                    notification: (msg+"\n"+log).split("\n")
+                                }).on("ok", function (e, view) { view.remove(); }); 
+                            });
+                        } else {
+                            var logFile = fp.substring(0, fp.length - 4) + ".log";
+                            var header = "Compilation error";
+                            ws.getFile(logFile, function (err, res) {
+                                if (!err) {
+                                    msg = res.content.substring(res.content.indexOf("Parsing "));
+                                    msg = msg.replace("Parsing", "Error while parsing");
+                                } else {
+                                    msg = msg.substring(msg.indexOf("Writing output to file"));
+                                    // header += ", please check the PVS output file for details.";
+                                }
+                                msg = msg.replace(/\\n/g,". ");
+                                msg = msg.split("{").join(" ").split("}").join(" ");
+                                Notification.create({
+                                    header: header,
+                                    notification: msg.split("\n")
+                                }).on("ok", function (e, view) { view.remove(); });
+                            });
+                        }
+                    });
+            }
+
+            // if the pvsFile is not specified, we compile the main file
+            // note: this happens when a directory is selected
+            var pvsFile = projectManager.getSelectedFile() || projectManager.project().mainPVSFile();
+            if (!pvsFile) { return; }
+            if (pvsFile.dirty()) {
+                document.getElementById("btnSaveFile").click();
+            }
+            proveTheorem(pvsFile);
+        });
+
+        
         d3.select("#btnSetMainFile").on("click", function () {
             var pvsFile = projectManager.getSelectedFile(), project = projectManager.project();
             if (pvsFile) {

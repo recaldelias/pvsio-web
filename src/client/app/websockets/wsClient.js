@@ -103,6 +103,7 @@ define(function (require, exports, module) {
                         token.data.command = token.data.command.split(",").map(function(str) { return str.trim(); }).join(",");
                     }
                     callbackRegistry[id] = cb;
+                    // console.log('ola que tal xD');
                     ws.send(JSON.stringify(token));
                 } else {
                     console.error("Token is undefined or malformed");

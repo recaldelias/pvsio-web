@@ -1,0 +1,573 @@
+{
+ "descriptor": {
+  "file_type": "emdl",
+  "version": "2.0",
+  "description": "emucharts model",
+  "chart_name": "EMUCHART__0"
+ },
+ "chart": {
+  "states": [
+   {
+    "id": "X1",
+    "name": "off",
+    "color": "#1f77b4",
+    "width": 36,
+    "height": 36,
+    "x": -139.84446279533412,
+    "y": 80.65652717179542,
+    "enter": "",
+    "exit": "",
+    "pmr": [],
+    "widgets": [],
+    "components": []
+   },
+   {
+    "id": "X2",
+    "name": "on",
+    "color": "#ff7f0e",
+    "width": 36,
+    "height": 36,
+    "x": 324.5882386057038,
+    "y": 316.14547724641585,
+    "enter": "",
+    "exit": "",
+    "pmr": [],
+    "widgets": [],
+    "components": []
+   }
+  ],
+  "transitions": [
+   {
+    "id": "T1",
+    "name": "tick",
+    "source": {
+     "id": "X1",
+     "name": "off",
+     "color": "#1f77b4",
+     "width": 36,
+     "height": 36,
+     "x": -139.84446279533412,
+     "y": 80.65652717179542,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 160.4878125222165,
+     "y": 174.0123880005716
+    }
+   },
+   {
+    "id": "T2",
+    "name": "turn_off",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X1",
+     "name": "off",
+     "color": "#1f77b4",
+     "width": 36,
+     "height": 36,
+     "x": -139.84446279533412,
+     "y": 80.65652717179542,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 112.0394670716636,
+     "y": 252.39130051122174
+    }
+   },
+   {
+    "id": "T3",
+    "name": "click_down_button [displayT > 0 && machine_mode = frequency ] {displayT := displayT - 1; deviceDisplay := displayT;}",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 372.5882386057038,
+     "y": 116.14547724641585
+    }
+   },
+   {
+    "id": "T4",
+    "name": "click_down_button [displayT = 0 && machine_mode = frequency] {displayT := 0; deviceDisplay := displayT;}",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 392.5882386057038,
+     "y": 132.14547724641585
+    }
+   },
+   {
+    "id": "T5",
+    "name": "click_down_button [display = 0 && machine_mode = dosage] {display := 0; deviceDisplay := display;}",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 412.5882386057038,
+     "y": 148.14547724641585
+    }
+   },
+   {
+    "id": "T6",
+    "name": "click_down_button [display > 0 && machine_mode = dosage] {display := display - 0.1; deviceDisplay := display;}",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 432.5882386057038,
+     "y": 164.14547724641585
+    }
+   },
+   {
+    "id": "T7",
+    "name": "click_up_button  [displayT  = 60 && machine_mode = frequency] { displayT := 60; deviceDisplay := displayT; }",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 452.5882386057038,
+     "y": 180.14547724641585
+    }
+   },
+   {
+    "id": "T8",
+    "name": "click_up_button  [display  <  60 && machine_mode = frequency] { displayT := displayT + 1; deviceDisplay := displayT; }",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 472.5882386057038,
+     "y": 196.14547724641585
+    }
+   },
+   {
+    "id": "T9",
+    "name": "click_up_button  [display  < 10 && machine_mode = dosage] { display := display + 0.1; deviceDisplay := display; }",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 492.5882386057038,
+     "y": 212.14547724641585
+    }
+   },
+   {
+    "id": "T10",
+    "name": "click_up_button  [display  = 10 && machine_mode = dosage] { display := 10; deviceDisplay := display;}",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 512.5882386057037,
+     "y": 228.14547724641585
+    }
+   },
+   {
+    "id": "T11",
+    "name": "click_switch_mode [machine_mode = frequency] { machine_mode := dosage; deviceDisplay:= display;}",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 532.5882386057037,
+     "y": 244.14547724641585
+    }
+   },
+   {
+    "id": "T12",
+    "name": "click_switch_mode [machine_mode = dosage] { machine_mode := frequency; deviceDisplay := displayT;}",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 552.5882386057037,
+     "y": 260.14547724641585
+    }
+   },
+   {
+    "id": "T13",
+    "name": "click_reset {display :=0; displayT :=0; deviceDisplay:= 0;}",
+    "source": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "target": {
+     "id": "X2",
+     "name": "on",
+     "color": "#ff7f0e",
+     "width": 36,
+     "height": 36,
+     "x": 324.5882386057038,
+     "y": 316.14547724641585,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    },
+    "controlPoint": {
+     "x": 344.5882386057038,
+     "y": 366.5454772464158
+    }
+   }
+  ],
+  "initial_transitions": [
+   {
+    "id": "IT1",
+    "name": "",
+    "target": {
+     "id": "X1",
+     "name": "off",
+     "color": "#1f77b4",
+     "width": 36,
+     "height": 36,
+     "x": -139.84446279533412,
+     "y": 80.65652717179542,
+     "enter": "",
+     "exit": "",
+     "pmr": [],
+     "widgets": [],
+     "components": []
+    }
+   }
+  ],
+  "variables": [
+   {
+    "id": "VAR_display:real(Local)",
+    "name": "display",
+    "type": "real",
+    "value": "0",
+    "scope": "Local"
+   },
+   {
+    "id": "VAR_displayT:int(Local)",
+    "name": "displayT",
+    "type": "int",
+    "value": "0",
+    "scope": "Local"
+   },
+   {
+    "id": "VAR_deviceDisplay:real(Local)",
+    "name": "deviceDisplay",
+    "type": "real",
+    "value": "0",
+    "scope": "Local"
+   },
+   {
+    "id": "VAR_machine_mode:MachineMode(Local)",
+    "name": "machine_mode",
+    "type": "MachineMode",
+    "value": "dosage",
+    "scope": "Local"
+   }
+  ],
+  "constants": [],
+  "datatypes": [
+   {
+    "id": "DATATYPE_MachineMode",
+    "name": "MachineMode",
+    "constructors": [
+     "frequency",
+     "dosage"
+    ]
+   }
+  ],
+  "pmr": {},
+  "isPIM": false
+ }
+}

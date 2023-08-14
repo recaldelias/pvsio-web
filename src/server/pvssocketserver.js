@@ -191,6 +191,29 @@ function run() {
         }
     }
 
+    function proveTheorem(file, cb) {
+        console.log("proving theorem in " + file + " ...");
+        if (process.env.PORT) { // this is for the PVSio-web version installed on the heroku cloud
+            console.log("/app/PVS/proveit --traces -l -v -c -s " + file);
+            procWrapper().exec({
+                command: "/app/PVS/proveit --traces -l -v -c -s " + file,
+                callBack: cb
+            });
+        } else if (process.env.pvsdir) {
+            console.log(path.join(process.env.pvsdir, "proveit") + " --traces -l -v -c -s " + file);
+            procWrapper().exec({
+                command: path.join(process.env.pvsdir, "proveit") + " --traces -l -v -c -s " + file,
+                callBack: cb
+            });
+        } else {
+            console.log("proveit --traces -l -v -c -s " + file);
+            procWrapper().exec({
+                command: "proveit --traces -l -v -c -s " + file,
+                callBack: cb
+            });
+        }
+    }
+
     /**
      * @function java
      * @desc Executes a java program on the server
@@ -564,6 +587,21 @@ function run() {
             "typeCheck": function (token, socket, socketid) {
                 initProcessMap(socketid);
                 typeCheck(path.join(baseProjectDir, token.path), function (err, stdout, stderr) {
+                    let res = {
+                        id: token.id,
+                        type: token.type,
+                        err: err,
+                        stdout: stdout,
+                        stderr: stderr,
+                        socketId: socketid,
+                        time: token.time
+                    };
+                    processCallback(res, socket);
+                });
+            },
+            "proveTheorem": function (token, socket, socketid) {
+                initProcessMap(socketid);
+                proveTheorem(path.join(baseProjectDir, token.path), function (err, stdout, stderr) {
                     let res = {
                         id: token.id,
                         type: token.type,

@@ -296,6 +296,7 @@ define(function (require, exports, module) {
             @param {callback} The callback function to invoke once the server responds with a message
         */
         o.send = function (token, cb) {
+            // console.log('este capaz sea --------------------->',token,cb);
             wscBase.send(token, cb);
             return o;
         };

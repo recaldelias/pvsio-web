@@ -1,0 +1,59 @@
+consistency5k: THEORY
+ BEGIN IMPORTING EMUCHART__0
+
+%-- transition system
+init?(st: State): bool = (st = init(0))
+trans(pre, post: State): bool = 
+   (per_click_down_button(pre) AND post = click_down_button(pre)) OR
+   (per_click_reset(pre) AND post = click_reset(pre)) OR
+   (per_click_switch_mode(pre) AND post = click_switch_mode(pre)) OR
+   (per_click_up_button(pre) AND post = click_up_button(pre)) OR
+   (per_tick(pre) AND post = tick(pre)) OR
+   (per_turn_off(pre) AND post = turn_off(pre))
+
+%-- PVS predicate defining the property to be analysed
+consistency(st: State): bool =
+    (per_click_down_button(st) IMPLIES
+     LET post = click_down_button(st)
+      IN ( post`machine_mode=st`machine_mode )) AND
+     (per_click_up_button(st) IMPLIES
+     LET post = click_up_button(st)
+      IN ( post`machine_mode=st`machine_mode ))
+
+
+%-- guard predicate for excluding irrelevant states from the proof
+guard(pre, post: State): bool = true
+
+%-- PVS theorem formulated using structural induction
+CONSISTENCY: THEOREM
+  FORALL (pre, post: State):
+    (init?(pre) IMPLIES consistency(pre))
+       AND
+    ((consistency(pre) AND guard(pre, post) AND trans(pre, post)) IMPLIES consistency(post))
+%|-----------------------------------------------------------------
+%|- Proof strategy for proving CONSISTENCY.
+%|- Performs skolemization, expansions, case-splitting, then grind.
+%|- To install the proof strategy in PVS Emacs, type in Emacs:
+%|-       M-x install-prooflite-scripts-theory!
+%|- To run the proofs in batch mode, type from the command line:
+%|-       proveit consistency
+%|-----------------------------------------------------------------
+%|- CONSISTENCY: PROOF
+%|-   (then
+%|-     (rewrite-msg-off)
+%|-     (skosimp*)
+%|-     (branch (prop)
+%|- 	 ((then (comment "induction base")
+%|- 	        (try (grind :if-match nil) (propax) (postpone)))
+%|- 	  (then (comment "inductive step")
+%|- 	        (expand "trans")
+%|- 	        (expand "per_click_down_button")
+%|- 	        (expand "per_click_up_button")
+%|- 	        (prop)
+%|- 	        (try (grind :if-match nil) (propax) (postpone))))))
+%|- QED
+%|-----------------------------------------------------------------
+%|- Date = yyyy.mm.dd
+%|- Run time = xxx secs
+%|-----------------------------------------------------------------
+ END consistency5k

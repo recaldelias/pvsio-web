@@ -1,0 +1,14 @@
+(reversibility
+ (REVERSIBILITY 0
+  (REVERSIBILITY-1 nil 3900150959
+   (""
+    (then (rewrite-msg-off) (skosimp*)
+     (branch (prop)
+      ((then (comment "induction base")
+        (try (grind :if-match nil) (propax) (postpone)))
+       (then (comment "inductive step") (expand "trans")
+        (expand "per_click_switch_mode") (prop)
+        (try (grind :if-match nil) (propax) (postpone))))))
+    nil)
+   nil shostak)))
+
