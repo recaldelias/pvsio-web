@@ -1,0 +1,50 @@
+reversibility3: THEORY
+ BEGIN IMPORTING EMUCHART__0
+
+%-- transition system
+init?(st: State): bool = (st = init(0))
+trans(pre, post: State): bool = 
+   (per_click_down_button(pre) AND post = click_down_button(pre)) OR
+   (per_click_up_button(pre) AND post = click_up_button(pre))
+
+reversibility(st: State): bool =
+    (per_click_down_button(st) IMPLIES
+      (per_click_up_button(click_down_button(st)) AND click_up_button(click_down_button(st))`display = st`display)
+     )
+
+%-- guard predicate for excluding irrelevant states from the proof
+guard(pre, post: State): bool = 
+	(pre`display>0) AND (post`display>0)  AND (pre`machine_mode = dosage) AND (post`machine_mode = dosage)
+
+%-- PVS theorem formulated using structural induction
+REVERSIBILITY: THEOREM
+  FORALL (pre, post: State):
+    (init?(pre) IMPLIES reversibility(pre))
+       AND
+    ((reversibility(pre) AND guard(pre, post) AND trans(pre, post)) IMPLIES reversibility(post))
+%|-----------------------------------------------------------------
+%|- Proof strategy for proving REVERSIBILITY.
+%|- Performs skolemization, expansions, case-splitting, then grind.
+%|- To install the proof strategy in PVS Emacs, type in Emacs:
+%|-       M-x install-prooflite-scripts-theory!
+%|- To run the proofs in batch mode, type from the command line:
+%|-       proveit consistency
+%|-----------------------------------------------------------------
+%|- REVERSIBILITY: PROOF
+%|-   (then
+%|-     (rewrite-msg-off)
+%|-     (skosimp*)
+%|-     (branch (prop)
+%|- 	 ((then (comment "induction base")
+%|- 	        (try (grind :if-match nil) (propax) (postpone)))
+%|- 	  (then (comment "inductive step")
+%|- 	        (expand "trans")
+%|- 	        (expand "per_click_down_button")
+%|- 	        (prop)
+%|- 	        (try (grind :if-match nil) (propax) (postpone))))))
+%|- QED
+%|-----------------------------------------------------------------
+%|- Date = yyyy.mm.dd
+%|- Run time = xxx secs
+%|-----------------------------------------------------------------
+ END reversibility3

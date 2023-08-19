@@ -9,7 +9,7 @@
 define(function (require, exports, module) {
     "use strict";
     
-    var defaultProjectName = "defaultProject",
+    var defaultProjectName = "deviceDemo",
         defaultPVSFileName = "main.pvs",
         defaultPVSTheory   = "main: THEORY\n" +
                              " BEGIN\n " +

@@ -316,11 +316,11 @@ define(function (require, exports, module) {
                             ws.getFile(logFile, function (err, res) {
                                 log = res.content;
                                 log = log.replace(/\\n/g,". ");
-                                log = log.split("{").join(" ").split("}").join(" ");
+                                // log = log.split("{").join(" ").split("}").join(" ");
                                 log = log.substring(log.indexOf("Installing inlined proof scripts into theory"), log.length);  
                                 Notification.create({
                                     header: "Proof summary of "+ pvsFile.name ,
-                                    notification: (msg+"\n"+log).split("\n")
+                                    notification: (msg+"\n\n"+log).split("\n")
                                 }).on("ok", function (e, view) { view.remove(); }); 
                             });
                         } else {

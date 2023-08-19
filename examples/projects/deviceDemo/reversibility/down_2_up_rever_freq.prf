@@ -1,6 +1,6 @@
-(reversibility2
+(reversibility4
  (REVERSIBILITY 0
-  (REVERSIBILITY-1 nil 3900419408
+  (REVERSIBILITY-1 nil 3901034398
    (""
     (then (rewrite-msg-off) (skosimp*)
      (branch (prop)

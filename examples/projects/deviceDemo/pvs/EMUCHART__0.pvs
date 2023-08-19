@@ -89,17 +89,12 @@ EMUCHART__0: THEORY
      ELSE -> st
     ENDCOND
 
-  per_click_up_button(st: State): bool = (current_mode(st) = on AND ( display(st) < 60 AND machine_mode(st) = frequency ))
-    OR (current_mode(st) = on AND ( display(st) < 10 AND machine_mode(st) = dosage ))
+  per_click_up_button(st: State): bool = (current_mode(st) = on AND ( display(st) < 10 AND machine_mode(st) = dosage ))
     OR (current_mode(st) = on AND ( display(st) = 10 AND machine_mode(st) = dosage ))
+    OR (current_mode(st) = on AND ( displayT(st) < 60 AND machine_mode(st) = frequency ))
     OR (current_mode(st) = on AND ( displayT(st) = 60 AND machine_mode(st) = frequency ))
   click_up_button(st: (per_click_up_button)): State =
     COND
-     current_mode(st) = on AND ( display(st) < 60 AND machine_mode(st) = frequency )
-      -> LET st = leave(on)(st),
-             st = st WITH [ displayT := displayT(st) + 1 ],
-             st = st WITH [ deviceDisplay := displayT(st) ]
-          IN enter(on)(st),
      current_mode(st) = on AND ( display(st) < 10 AND machine_mode(st) = dosage )
       -> LET st = leave(on)(st),
              st = st WITH [ display := display(st) + 0.1 ],
@@ -109,6 +104,11 @@ EMUCHART__0: THEORY
       -> LET st = leave(on)(st),
              st = st WITH [ display := 10 ],
              st = st WITH [ deviceDisplay := display(st) ]
+          IN enter(on)(st),
+     current_mode(st) = on AND ( displayT(st) < 60 AND machine_mode(st) = frequency )
+      -> LET st = leave(on)(st),
+             st = st WITH [ displayT := displayT(st) + 1 ],
+             st = st WITH [ deviceDisplay := displayT(st) ]
           IN enter(on)(st),
      current_mode(st) = on AND ( displayT(st) = 60 AND machine_mode(st) = frequency )
       -> LET st = leave(on)(st),
