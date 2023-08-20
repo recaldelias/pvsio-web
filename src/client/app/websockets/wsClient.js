@@ -28,7 +28,7 @@ define(function (require, exports, module) {
                     resolve(ws);
                 } else {
                     let wsUrl = o.url();
-                    if (o.port()) { wsUrl = wsUrl + ":" + o.port(); }
+                    // if (o.port()) { wsUrl = wsUrl + ":" + o.port(); }
                     ws = new WebSocket(wsUrl);
                     ws.onopen = function (event) {
                         o.fire({type: events.ConnectionOpened, event: event});
