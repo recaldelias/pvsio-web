@@ -1,3 +1,23 @@
+
+<script>
+    function asfd(){
+        console.log(window.location.pathname);
+        if(window.location.pathname != '/pvs/'){
+            console.log(window.location.pathname);
+            // Create the <base> element
+            var baseElement = document.createElement('base');
+            baseElement.setAttribute('href', 'pvs/');
+
+            // Get the <head> element of the document
+            var headElement = document.querySelector('head');
+
+            // Append the <base> element to the <head> element
+            headElement.appendChild(baseElement);
+
+        }
+    }
+    asfd();
+</script>
 <div class="form-center">
     <div class="panel panel-info shadow center  scrollable-dialog">
         <div class="panel-heading">Open Project</div>
@@ -11,11 +31,11 @@
 							<div class="thumbnail">
 								<div class="image">
                                     {{#if this.image}}
-                                    <img src="{{../../origin}}projects/{{this.name}}/{{this.image}}"
+                                    <img src="{{../../origin}}pvs/projects/{{this.name}}/{{this.image}}"
                                          onclick="document.getElementById('{{this.name}}').click();"
                                          style="cursor:pointer;">
                                     {{else}}
-                                    <img src="{{../../origin}}projects/cry.png"
+                                    <img src="{{../../origin}}pvs/projects/cry.png"
                                          onclick="document.getElementById('{{this.name}}').click();"
                                          style="cursor:pointer; max-height:120px; padding-top:32px;"
                                          alt="No Image Available">
